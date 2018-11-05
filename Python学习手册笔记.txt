@@ -1,0 +1,85 @@
+Part 3 || Chapter 15    Python Docs
+========================
+1. Where can find Python Docs resources ?
+Comment in Python file  : start with "#" this is a single line comment.
+dir() :  return a list of the object's  attributes.
+docstring : __doc__
+Python Doc : help()
+Standard manual set
+Web Resources / Books
+
+2. How to get detailed information about the attributes of an object ?
+__doc__ : module docstring is on the *.py head; function and class docstring place in head in 
+function / class body respectively.
+Eg. Module.__doc__; Module.func.__doc__;Module.cls.__doc__;Module.cls.method.__doc__;
+
+help() : Auto generate module info in specific way.
+Python Module Document : all 
+
+=======================================
+Part 3 : practice
+
+=======================================
+Part 4 || Chapter 16  Function Basics
+0. function is  a packaged procedure invoked by its name,
+functions are also basic program structure Python provide for maximizing
+code reuse,which split complex complex systems into manageable parts.
+declare function        -->   def / lambda
+scope visibility           -->   global / nonlocal
+come results              -->   return / yield
+
+1.How to create function ?
+def statements are coded in module files and run to generate functions when
+the module file first imported.
+def create an function object and assigns it to a name [function name]
+lambda  create an object but return it as a result.
+return sends a result object back to caller. A return without a value will return 
+None,the default value.
+yield send a result object back to the caller,but remember where it left off.[generators]
+
+2. Variable Visibility Scope 
+global declare module-level variables that are to be assigned,which can be used to retain 
+state - information remembered between functions call,without by sharing
+global names.
+Function's arguments ,return values and variables are not declare and no type constraints,
+which mean that they can be any types.
+function definition happens at Python runtime.
+By the large,we code to object interfaces in Python,not data types.By implementing method,any 
+object can be applied the polymorphism operations. 
+Checking the types of object passed into function breaks the function's flexibility,
+constraining the function to work on specific types only.
+
+=================================
+Chapter 17  Scopes
+=================================
+
+The Python's scope is place where variables defined and decided the meaning of variable in code.
+all assigned inside a function are associated with function's namespace. 
+functions define a local scope and modules define a global scope
+
+
+
+ ================================
+ Chapter 18 Arguments
+ ================================
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
