@@ -134,12 +134,82 @@ class Person:
         self.name = name
         self.job = job
         self.pay = pay
-
+    def lastName(self):
+        return self.name.split()[-1]
+    def giveRaise(self,percent):
+        self.pay = int(self.pay*(1+percent))
+    # print (instance)
+    def __str__(self): 
+        return '[Person::%s %s]' %(self.name,self.pay)
 if __name__ =='__main__':
-    bob = Person('bob', 'writer', 10000)
+    bob = Person('bob jones', 'writer', 10000)
     sue = Person('sue')
     print(bob.name)
     print(sue.pay)
+    print(bob.lastName())
+    print(bob)
+#使用继承扩展方法
+
+class Manager(Person):  # Inherit
+    def __init__(self,name,pay):
+        Person.__init__(self,name,'mgr',pay)  # call base init ,start on a supper className:Person
+
+    def giveRaise(self,percent,bonus = 0.1): # Customize
+        # instance.methods(args) --> class.methods(args) 
+        return Person.giveRaise(self,percent + bonus) # use class name to avoid recurisive
+    def some(self): pass     # extends                     
+    
+
+"""
+组合类的其他方式 -- 设计模式
+"""
+class newManager(Person):
+    "newManager 作为委托者管理者一个的对象person，并把方法给它"
+
+    def __init__(self,name,pay):
+        self.person = Person(name,'mgr',pay)  # 嵌入一个Person类
+    def giveRaise(self,percent,bonus = 0.1):
+        self.person.giveRaise(percent + bonus)
+    def __getattr__(self,attr):
+        return getattr(self.person,attr) # 返回嵌入类的属性
+    def __str_(self):
+        return str(self.person) 
+
+class Department:
+    "Container used for manage person" 
+    def __init__(self,*args):
+        self.members = list(args)
+    def addMember(self,person):
+        self.members.append(person)
+    def giveRaise(self,percent):
+        for p in self.members:
+            p.giveRaise(percent)
+    def showAll(self):
+        for p in self.members:
+            print(p)
+# test 
+p1 = Person('apple',pay=10000)
+p2 = Person('google',"IT",10000)
+p3 = Person('amazon',pay=5000)
+depart = Department(p1,p2) #p1.pay=10000 p2.pay =10000
+depart.addMember(p3) 
+depart.giveRaise(0.1)
+depart.showAll()
+""" Output
+[Person::apple 11000]
+[Person::google 11000]
+[Person::amazon 5500]
+"""
+
+
+
+
+
+
+
+
+
+
 
 
 print("Endhere!")
