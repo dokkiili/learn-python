@@ -1,11 +1,11 @@
 """
-===================================
-Part 6  :: Python class and OOP
-===================================
-Cover Chapter:25
+=====================================================
+Part 6  :: Introduction to  Python class and OOP
+=====================================================
+Cover Chapter:25 
 
 use class to create objects 
------------------------------------
+=====================================================
 """
 # 类是Python程序的组成单元，就像函数和模块一样封装 Data & Logic ,
 #  data --> fields
@@ -64,19 +64,92 @@ a = Father("father")
 #------------------------------------------------
 # 继承搜索如何查找属性? 继承搜索先在实例Instance中搜寻属性，然后创建实例的那个类Class,
 # 之后才是所有的超类，由底端-->顶端，从左至右侧，属性一旦找到即停止.
-# 类和对象有何不同? 类和实例都是命名空间，类是建立对象实例的工厂，类支持
+# 类和对象有何不同? 类和实例都是命名空间，类是建立实例的工厂，类支持
 # 运算符重载，由实例继承，类的函数是用来处理实例的特殊方法。
 # 类中__init__方法，当类创建实例时，Python自动调用，叫构造函数。第一个参数叫self,
-# 没有__init__方法，实例创建时只是一个命名空间。
+# 没有__init__方法，实例创建时只是一个空的命名空间。
 #------------------------------------------------
+#  Python 模型
+#  Python中一切都是对象，Class、Module、Instance，
+#  Module 只有一个实例，Class 可以生成多个实例。
+#  class 语句生成 class对象，对class的调用生成实例。实例自动连接
+#  创建实例的类。类连接超类，从左到右的顺序。
+#  Python OOP 提供了代码的重用功能，是其他Python组件难以提供的。
+#  类的继承、定制 是Module 和 function做不到的。
+# ---------------------------------------------
+#  Python程序框架
+#  1.把常见的任务实现成类，混合在应用程序中，这些软件框架可以提供数据库接口，测试协议，GUI工具；
+#  2.编写子类，实现方法，类树中较高位置的框架类将替代大部分工作。
+#  3.理解设计模式
+#---------------------------------------------
+
 
 """
------------------------------
+==============================================
 Cover Chapter:26
 
 Basics on class
------------------------------
+==============================================
 """
+
+class clsName:
+    def setdata(self,value):
+        self.data = value
+    def display(self):
+        print(self.data)
+
+class secName(clsName):
+    def display(self):
+        print("Current : %s" % self.data)
+D1 = secName()
+D1.setdata("alex") # use clsName.setdata
+D1.display()  # use secName.display
+"""
+类存在于模块中，是模块内的属性.模块对应整个文件，类只是文件内的语句。
+from myModule import Mylass
+类来自于语句，实例来自调用。
+执行class语句创建类对象并赋值给类变量名；
+class newcls(Myclass):
+    pass
+"""
+# 类截获Python运算符实现 Operator Overloading,如 __add__ 方法
+class res:
+    name = "res"
+class son(res):
+    pass
+r = res()
+s = son()
+res.__dict__ # return a dict contains class object's namespace
+res.__dict__.keys() # return the key
+r.__class__ # <class '__main__.rec'>
+son.__base__ # <class '__main__.rec'> return super class
+"""
+===========================================
+Cover Chapter 27 more objects
+===========================================
+"""
+# example  person.py
+class Person:
+    def __init__(self,name,job=None,pay=0):
+        self.name = name
+        self.job = job
+        self.pay = pay
+
+if __name__ =='__main__':
+    bob = Person('bob', 'writer', 10000)
+    sue = Person('sue')
+    print(bob.name)
+    print(sue.pay)
+
+
+print("Endhere!")
+
+
+
+
+
+
+
 
 
 
@@ -150,11 +223,6 @@ def Main():
     a = Reverse('AppleCare')
     for char in a:
         print(char,end='-')
-
-
-
-if __name__ =="__main__":
-    Main()
 
 
 
