@@ -141,6 +141,8 @@ class Person:
     # print (instance)
     def __str__(self): 
         return '[Person::%s %s]' %(self.name,self.pay)
+
+    
 if __name__ =='__main__':
     bob = Person('bob jones', 'writer', 10000)
     sue = Person('sue')
@@ -200,6 +202,61 @@ depart.showAll()
 [Person::google 11000]
 [Person::amazon 5500]
 """
+# ================================
+# Python Inspect Tools
+print(p1.__class__)
+print(p1.__class__.__name__)
+print(p1.__dict__.keys())
+# In class ,We should define __str__ method as blow:
+# def __str__(self):
+#     return '[{0}{1}]'.format(self.__class__.__name__....etc)
+'''
+self.__dict__ show attr of instance not class fields
+
+'''
+class AttrDisplay:
+    """provides an inheritable print overload method display
+    instances with their class and name=value pair.
+    
+    """
+    def gatherAttrs(self):
+        attrs = []
+        for key in sorted(self.__dict__):
+            attrs.append('%s--%s'%(key,getattr(self,key)))  
+        return ', '.join(attrs)
+    
+    def __str__(self):
+        return '[{0}: {1}]'.format(self.__class__.__name__,self.gatherAttrs())
+# Now redefine the person class
+class NewPerson(AttrDisplay):
+    pass
+""" 定制化显示类的信息 例如Person类和Manager类
+"""
+# More
+'''
+class className(object):  # Assign to a classname
+    data = value          # Shared class data attr
+    def method(self):     # Methods
+        self.member = value # Pre-instance data
+When a class loaded, the class statement will execute once from head to end,
+create variable/attr in the local scope.
+'''  
+class MixedNames:
+    data = "INIT"
+    def __init__(self,value):
+        self.data =  value
+    def display(self):
+        print(self.data,MixedNames.data)
+
+a = MixedNames("MOOC")
+b = MixedNames("WOOC")
+a.display()
+b.display()
+
+
+
+
+
 
 
 
@@ -213,37 +270,6 @@ depart.showAll()
 
 
 print("Endhere!")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class MyClass:
-    number = 0
-    name = "noname"
-
-
-
-
-
-
-
 
 
 # def Main():
