@@ -253,11 +253,25 @@ b = MixedNames("WOOC")
 a.display()
 b.display()
 
+class Supper:
+    def method(self):
+        print("Supper::method")
 
+    def delegate(self):
+        self.action()
+    def action(self):
+        raise NotImplementedError("action must be defined!!!")
+class Provide(Supper):
+    def action(self):
+        print("Provide::action::::")
 
+son = Provide()
+son.delegate() 
 
-
-
+# 抽象超类 没有继承或实现该方法，而是由子类实现。
+#  
+# 子类自身定义的__init__ 构造函数
+# 
 
 
 
