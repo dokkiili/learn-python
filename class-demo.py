@@ -232,8 +232,17 @@ class NewPerson(AttrDisplay):
     pass
 """ 定制化显示类的信息 例如Person类和Manager类
 """
-# More
+
+
+
 '''
+=======================================
+Chapter 28
+=======================================
+class 是语句，被执行（或被导入）时，产生类对象。并把对象赋值给类名 Class Object --> className
+class 是复合语句，内嵌主体语句。
+
+# execute process
 class className(object):  # Assign to a classname
     data = value          # Shared class data attr
     def method(self):     # Methods
@@ -242,16 +251,33 @@ When a class loaded, the class statement will execute once from head to end,
 create variable/attr in the local scope.
 '''  
 class MixedNames:
-    data = "INIT"
-    def __init__(self,value):
-        self.data =  value
+    data = "INIT"    #第一个data
+    def __init__(self,value):  
+        self.data =  value  # 第二个data
     def display(self):
         print(self.data,MixedNames.data)
 
 a = MixedNames("MOOC")
 b = MixedNames("WOOC")
-a.display()
-b.display()
+a.display()   # MOOC INIT
+b.display()   # WOOC INIT
+
+"""
+调用 超类的构造函数 Supper.__init__(self,...)
+"""
+class SUP:
+    def __init__(self):
+        pass
+class SUB(SUP):
+    def __init__(self):
+        SUB.__init__(self)
+
+"""
+当对象进行.运算时，会发生继承，程序代码会在内存中创建对象树
+"""
+
+
+
 
 class Supper:
     def method(self):
@@ -271,7 +297,27 @@ son.delegate()
 # 抽象超类 没有继承或实现该方法，而是由子类实现。
 #  
 # 子类自身定义的__init__ 构造函数
-# 
+
+from abc import ABCMeta,abstractmethod
+
+class supper(metaclass=ABCMeta):
+    def delegate(self):
+        self.action()
+    @abstractmethod
+    def action(self):
+        pass
+
+# X = supper() # 不能初始化抽象类
+## add sub class 
+class sub(supper):
+    def action(self):
+        print("Impled!")
+X1 = sub()
+X1.delegate()
+
+
+
+
 
 
 
