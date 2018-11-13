@@ -314,19 +314,24 @@ class sub(supper):
         print("Impled!")
 X1 = sub()
 X1.delegate()
+"""
+============================
+Cover Chapter 29
+============================
+"""
+#常用运算符重载
+["__init__",'__add__',"__getattr__",'__getitem__','...etc',
+"__iter__","__contains__",'__getattr__','__repr__','__str__']
 
-
-
-
-
-
-
-
-
-
-
-
-
+# 索引与切片
+class Indexer:
+    "two args:instance & index"
+    def __getitem__(self,index):  
+        return index ** 2
+X = Indexer()
+print(X[2])
+for i in range(5):
+    print(X[i],end=" ")
 
 
 print("Endhere!")
